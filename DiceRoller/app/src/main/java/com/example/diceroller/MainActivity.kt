@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+  private val diceImage: ImageView? by lazy {
+    findViewById(R.id.dice_image)
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+
     findViewById<Button>(R.id.button_roll)?.setOnClickListener {
       rollDice()
     }
@@ -26,7 +29,7 @@ class MainActivity : AppCompatActivity() {
       else -> R.drawable.dice_6
     }
 
-    findViewById<ImageView>(R.id.dice_image)?.let {
+    diceImage?.let {
       it.setImageResource(drawableResource)
     }
   }
