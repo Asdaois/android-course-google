@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.ImageView
 
 class MainActivity : AppCompatActivity() {
-  private val diceImage: ImageView? by lazy {
+  private val diceImage: ImageView by lazy {
     findViewById(R.id.dice_image)
   }
 
@@ -29,9 +29,7 @@ class MainActivity : AppCompatActivity() {
       else -> R.drawable.dice_6
     }
 
-    diceImage?.let {
-      it.setImageResource(drawableResource)
-    }
+    diceImage.setImageResource(drawableResource)
   }
 
 }
