@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">About Me</string>
+    <string name="my_name">Jose Guevara</string>
+    <string name="yellow_start">Yellow Start</string>
+    <string name="bio">
+        I am a software developer and a student at the University of UNEXPO, Venezuela.
+        \n I am passionate about learning new technologies and solving problems.
+        \n I am currently looking for a software engineering position.
+        \n I am a self-taught programmer and I am always learning new things.
+        \n I am a team player and I am always ready to learn new things.
+        \n I am a problem solver and I am always looking for new ways to solve problems.
+        \n I love write stories and I am always trying to improve my writing skills.
+    </string>
+    <string name="what_is_your_nickname">What is your Nickname?</string>
+    <string name="done">done</string>
+    <string name="greet_with_nickname">Hi!, my friends call me %s</string>
+    <string name="a_shining_star_in_the_night">A shining star in the night</string>
+</resources>
