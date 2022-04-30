@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+    binding.myName = MyName("Jose Guevara")
 
     binding.buttonDone.setOnClickListener {
       hideKeyboard()
@@ -34,9 +35,9 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun showNickname(aNickname: String) {
-    binding.nicknameText.apply {
-      text = getString(R.string.greet_with_nickname, aNickname)
-      visibility = TextView.VISIBLE
+    binding.apply {
+      myName?.nickname = getString(R.string.greet_with_nickname, aNickname)
+      nicknameText.visibility = TextView.VISIBLE
     }
   }
 
