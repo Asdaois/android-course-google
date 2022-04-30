@@ -13,4 +13,6 @@
     </string>
     <string name="what_is_your_nickname">What is your Nickname?</string>
     <string name="done">done</string>
+    <string name="greet_with_nickname">Hi!, my friends call me %s</string>
+    <string name="a_shining_star_in_the_night">A shining star in the night</string>
 </resources>

@@ -6,12 +6,17 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.aboutme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+  private lateinit var binding: ActivityMainBinding
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-    findViewById<Button>(R.id.button_done)?.setOnClickListener {
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+    binding.buttonDone.setOnClickListener {
       hideKeyboard()
       addNickname()
       it.visibility = Button.GONE
@@ -29,18 +34,21 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun showNickname(aNickname: String) {
-    findViewById<TextView>(R.id.nickname_text).let {
-      it.text = "Hi!, my friends call me $aNickname"
-      it.visibility = TextView.VISIBLE
+    binding.nicknameText.apply {
+      text = getString(R.string.greet_with_nickname, aNickname)
+      visibility = TextView.VISIBLE
     }
   }
 
   private fun getNickname(): String {
-    var result: String = ""
-    findViewById<EditText>(R.id.nickname_edit)?.let {
-      result = it.text.toString()
-      it.visibility = EditText.GONE
+    var result: String
+
+    binding.nicknameEdit.apply {
+      result = text.toString()
+      visibility = EditText.GONE
     }
+    binding.invalidateAll()
+
     return result
   }
 }
