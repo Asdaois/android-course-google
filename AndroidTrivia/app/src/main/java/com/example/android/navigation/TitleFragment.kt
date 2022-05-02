@@ -22,7 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation
 import com.example.android.navigation.databinding.FragmentTitleBinding
 
 class TitleFragment : Fragment() {
@@ -34,11 +34,15 @@ class TitleFragment : Fragment() {
       inflater, R.layout.fragment_title, container, false
     )
 
-    binding.playButton.setOnClickListener { view: View ->
-      view.findNavController()
-        .navigate(TitleFragmentDirections.actionTitleFragment2ToGameFragment())
+    binding.playButton.setOnClickListener {
+      navigateToGameFragment(it)
     }
 
     return binding.root
+  }
+
+  private fun navigateToGameFragment(view: View?) {
+    Navigation.createNavigateOnClickListener(R.id.action_titleFragment2_to_gameFragment)
+      .onClick(view)
   }
 }
