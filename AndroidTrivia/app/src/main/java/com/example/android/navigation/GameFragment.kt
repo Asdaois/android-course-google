@@ -139,7 +139,12 @@ class GameFragment : Fragment() {
   }
 
   private fun navigateToGameWon(view: View) {
-    view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment())
+    view.findNavController().navigate(
+      GameFragmentDirections.actionGameFragmentToGameWonFragment(
+        numQuestions,
+        questionIndex
+      )
+    )
   }
 
   // randomize the questions and set the first question
