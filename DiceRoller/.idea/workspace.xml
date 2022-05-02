@@ -9,7 +9,44 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ba8c9-561c-40eb-8507-3e3c79159276" name="Default Changelist" comment="" />
+    <list default="true" id="2b7ba8c9-561c-40eb-8507-3e3c79159276" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/java/com/example/androidtriviaactualizedversion/navigation/AboutFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/java/com/example/androidtriviaactualizedversion/navigation/GameFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/java/com/example/androidtriviaactualizedversion/navigation/GameOverFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/java/com/example/androidtriviaactualizedversion/navigation/GameWonFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/java/com/example/androidtriviaactualizedversion/navigation/RulesFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/java/com/example/androidtriviaactualizedversion/navigation/TitleFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/anim/fade_out.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/anim/slide_in_right.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/anim/slide_out_left.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/anim/slide_out_right.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/about_android_trivia.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/android.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/android_category_simple.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/android_trivia.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/nav_header.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/share.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/trivia_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/try_again.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/drawable/you_win.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/layout/fragment_about.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/layout/fragment_game.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/layout/fragment_game_over.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/layout/fragment_game_won.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/layout/fragment_rules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/layout/fragment_title.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/layout/nav_header.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/menu/winner_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/values/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AndroidTriviaActualizedVersion/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AndroidTrivia/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../AndroidTrivia/build.gradle" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +65,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="28SrKvzUU24uzlzNqgkVFHmwWtC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
