@@ -19,23 +19,29 @@ package com.example.android.navigation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.android.navigation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+  private lateinit var drawerLayout: DrawerLayout
+
   private var navController: NavController? = null
     get() = findNavController(R.id.navHostFragment)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     @Suppress("UNUSED_VARIABLE")
-    val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-    NavigationUI.setupActionBarWithNavController(this, navController!!)
+    val binding = DataBindingUtil.setContentView<com.example.android.navigation.databinding.ActivityMainBinding>(this, R.layout.activity_main)
+
+    drawerLayout = binding.drawerLayout
+
+    NavigationUI.setupActionBarWithNavController(this, navController!!, drawerLayout)
   }
 
   override fun onSupportNavigateUp(): Boolean {
-    return navController!!.navigateUp()
+    return NavigationUI.navigateUp(navController!!, drawerLayout)
   }
 }
