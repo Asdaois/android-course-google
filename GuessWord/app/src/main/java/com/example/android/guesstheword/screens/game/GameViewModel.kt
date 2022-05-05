@@ -1,9 +1,19 @@
 package com.example.android.guesstheword.screens.game
 
+import android.os.CountDownTimer
+import android.text.format.DateUtils
 import android.util.Log
 import androidx.lifecycle.*
 
 class GameViewModel : ViewModel() {
+  companion object {
+    const val DONE = 0L
+    const val ONE_SECOND = 1000L
+    const val COUNTDOWN_TIME = 60000L
+  }
+
+  private val timer: CountDownTimer
+
   // The current word
   private val _word: MutableLiveData<String> by lazy { MutableLiveData<String>("") }
   val word: LiveData<String>
@@ -21,6 +31,13 @@ class GameViewModel : ViewModel() {
   }
   val isGameFinished: LiveData<Boolean>
     get() = gameFinished
+
+  private val _currentTime: MutableLiveData<String> by lazy {
+    MutableLiveData<String>(DateUtils.formatElapsedTime(COUNTDOWN_TIME))
+  }
+  val currentTime: LiveData<String>
+    get() = _currentTime
+
   // The list of words - the front of the list is the next word to guess
   private lateinit var wordList: MutableList<String>
 
@@ -28,10 +45,22 @@ class GameViewModel : ViewModel() {
     Log.i("GVM", "GameViewModel created!")
     resetList()
     nextWord()
+
+    timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
+      override fun onTick(millisUntilFinished: Long) {
+        _currentTime.value = DateUtils.formatElapsedTime(millisUntilFinished / ONE_SECOND)
+      }
+
+      override fun onFinish() {
+        _currentTime.value = DateUtils.formatElapsedTime(DONE)
+        gameFinished.value = true
+      }
+    }.start()
   }
 
   override fun onCleared() {
     super.onCleared()
+    timer.cancel()
     Log.i("GVM", "GameViewModel destroyed!")
   }
 
@@ -69,12 +98,11 @@ class GameViewModel : ViewModel() {
    * Moves to the next word in the list
    */
   private fun nextWord() {
-    //Select and remove a word from the list
     if (wordList.isEmpty()) {
-      gameFinished.value = true
-    } else {
-      _word.value = wordList.removeAt(0)
+      resetList()
     }
+
+    _word.value = wordList.removeAt(0)
   }
 
   /** Methods for buttons presses **/

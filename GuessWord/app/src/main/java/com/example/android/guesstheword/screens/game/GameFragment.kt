@@ -77,6 +77,10 @@ class GameFragment : Fragment() {
         }
       })
 
+      it.currentTime.observe(viewLifecycleOwner, Observer { newTime: String ->
+        binding.timerText.text = newTime
+      })
+
     }
 
     return binding.root
