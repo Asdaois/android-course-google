@@ -48,15 +48,7 @@ class GameFragment : Fragment() {
       R.layout.game_fragment,
       container,
       false
-    ).also {
-      it.correctButton.setOnClickListener {
-        viewModel.onCorrect()
-      }
-
-      it.skipButton.setOnClickListener {
-        viewModel.onSkip()
-      }
-    }
+    )
 
     viewModel = ViewModelProvider(this).get(GameViewModel::class.java).also {
 
@@ -80,6 +72,8 @@ class GameFragment : Fragment() {
       })
 
     }
+
+    binding.gameViewModel = viewModel
 
     return binding.root
 
