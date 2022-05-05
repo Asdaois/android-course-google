@@ -18,6 +18,7 @@ package com.example.android.dessertpusher
 
 import android.content.ActivityNotFoundException
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -27,6 +28,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleObserver
 import com.example.android.dessertpusher.databinding.ActivityMainBinding
 import timber.log.Timber
+
+
+val KEY_REVENUE = "key_revenue"
 
 class MainActivity : AppCompatActivity(), LifecycleObserver {
 
@@ -82,7 +86,12 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     // Make sure the correct dessert is showing
     binding.dessertButton.setImageResource(currentDessert.imageId)
 
-    dessertTimer = DessertTimer()
+    dessertTimer = DessertTimer(lifecycle)
+
+    savedInstanceState?.run {
+      revenue = getInt(KEY_REVENUE, 0)
+      dessertsSold = getInt("dessertsSold")
+    }
   }
 
   /**
@@ -156,6 +165,15 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
     return super.onOptionsItemSelected(item)
   }
 
+  override fun onSaveInstanceState(outState: Bundle) {
+    super.onSaveInstanceState(outState)
+    outState.apply {
+      putInt(KEY_REVENUE, revenue)
+      putInt("dessertsSold", dessertsSold)
+    }
+    Timber.i("onSaveInstanceState called")
+  }
+
   override fun onResume() {
     super.onResume()
     Timber.i("onResume called")
@@ -169,13 +187,11 @@ class MainActivity : AppCompatActivity(), LifecycleObserver {
   override fun onStart() {
     super.onStart()
     Timber.i("onStart called")
-    dessertTimer.startTimer()
   }
 
   override fun onStop() {
     super.onStop()
     Timber.i("onStop called")
-    dessertTimer.stopTimer()
   }
 
   override fun onDestroy() {
