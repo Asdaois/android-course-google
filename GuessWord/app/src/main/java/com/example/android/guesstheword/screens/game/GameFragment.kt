@@ -45,29 +45,39 @@ class GameFragment : Fragment() {
   ): View? {
 
     // Inflate view and obtain an instance of the binding class
-    binding = DataBindingUtil.inflate(
+    binding = DataBindingUtil.inflate<GameFragmentBinding>(
       inflater,
       R.layout.game_fragment,
       container,
       false
-    )
-    binding.correctButton.setOnClickListener {
-      viewModel.onCorrect()
+    ).also {
+      it.correctButton.setOnClickListener {
+        viewModel.onCorrect()
+      }
+
+      it.skipButton.setOnClickListener {
+        viewModel.onSkip()
+      }
     }
 
-    binding.skipButton.setOnClickListener {
-      viewModel.onSkip()
+    viewModel = ViewModelProvider(this).get(GameViewModel::class.java).also {
+
+      it.score.observe(viewLifecycleOwner, Observer<Int> { newScore: Int ->
+        binding.scoreText.text = newScore.toString()
+      })
+
+      it.word.observe(viewLifecycleOwner, Observer<String> { newWord: String ->
+        binding.wordText.text = newWord
+      })
+
+      it.isGameFinished.observe(viewLifecycleOwner, Observer<Boolean> { isFinished: Boolean ->
+        if (isFinished) {
+          gameFinished()
+          it.onGameFinishComplete()
+        }
+      })
+
     }
-
-    viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
-
-    viewModel.score.observe(viewLifecycleOwner, Observer<Int> { newScore: Int ->
-      binding.scoreText.text = newScore.toString()
-    })
-
-    viewModel.word.observe(viewLifecycleOwner, Observer<String> { newWord: String ->
-      binding.wordText.text = newWord
-    })
 
     return binding.root
 
