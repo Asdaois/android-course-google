@@ -43,7 +43,7 @@ class GameFragment : Fragment() {
   ): View {
 
     // Inflate view and obtain an instance of the binding class
-    binding = DataBindingUtil.inflate<GameFragmentBinding>(
+    binding = DataBindingUtil.inflate(
       inflater,
       R.layout.game_fragment,
       container,
@@ -66,19 +66,18 @@ class GameFragment : Fragment() {
           it.onGameFinishComplete()
         }
       })
-
-      it.currentTime.observe(viewLifecycleOwner, Observer { newTime: String ->
-        binding.timerText.text = newTime
-      })
-
+//
+//      it.currentTimeFormatted.observe(viewLifecycleOwner, Observer<String> { newTime: String ->
+//        binding.timerText.text = newTime
+//      })
     }
 
     binding.gameViewModel = viewModel
+    binding.lifecycleOwner = this
 
     return binding.root
 
   }
-
 
   /**
    * Called when the game is finished

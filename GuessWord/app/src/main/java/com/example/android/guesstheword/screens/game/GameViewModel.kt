@@ -12,7 +12,7 @@ class GameViewModel : ViewModel() {
     const val COUNTDOWN_TIME = 60000L
   }
 
-  private val timer: CountDownTimer
+  private var timer: CountDownTimer
 
   // The current word
   private val _word: MutableLiveData<String> by lazy { MutableLiveData<String>("") }
@@ -32,11 +32,14 @@ class GameViewModel : ViewModel() {
   val isGameFinished: LiveData<Boolean>
     get() = gameFinished
 
-  private val _currentTime: MutableLiveData<String> by lazy {
-    MutableLiveData<String>(DateUtils.formatElapsedTime(COUNTDOWN_TIME))
+  private val currentTime: MutableLiveData<Long> by lazy {
+    MutableLiveData<Long>(COUNTDOWN_TIME)
   }
-  val currentTime: LiveData<String>
-    get() = _currentTime
+
+  val currentTimeFormatted: LiveData<String> = Transformations.map(currentTime) {
+    Log.i("GameViewModel", "timeFormatted: $it")
+    DateUtils.formatElapsedTime(it)
+  }
 
   // The list of words - the front of the list is the next word to guess
   private lateinit var wordList: MutableList<String>
@@ -48,11 +51,11 @@ class GameViewModel : ViewModel() {
 
     timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
       override fun onTick(millisUntilFinished: Long) {
-        _currentTime.value = DateUtils.formatElapsedTime(millisUntilFinished / ONE_SECOND)
+        currentTime.value = millisUntilFinished / ONE_SECOND
       }
 
       override fun onFinish() {
-        _currentTime.value = DateUtils.formatElapsedTime(DONE)
+        currentTime.value = DONE
         gameFinished.value = true
       }
     }.start()
