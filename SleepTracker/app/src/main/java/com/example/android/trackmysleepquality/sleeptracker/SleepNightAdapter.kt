@@ -1,43 +1,69 @@
 package com.example.android.trackmysleepquality.sleeptracker
 
-import android.graphics.Color
+import android.content.res.Resources
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.trackmysleepquality.R
+import com.example.android.trackmysleepquality.convertDurationToFormatted
+import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepNight
 
-class SleepNightAdapter : RecyclerView.Adapter<TextItemViewHolder>() {
+class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
   var data = listOf<SleepNight>()
     set(value) {
       field = value
       notifyDataSetChanged()
     }
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextItemViewHolder {
-    val layoutInflater = LayoutInflater.from(parent.context)
-    val view =
-      layoutInflater.inflate(R.layout.text_item_view, parent, false) as TextView
-    return TextItemViewHolder(view)
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    return ViewHolder.from(parent)
   }
-
-  override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
-    val item = data[position]
-
-    holder.textView.setTextColor(sleepQualityColor(item.sleepQuality))
-
-    holder.textView.text = item.sleepQuality.toString()
-  }
-
-  private fun sleepQualityColor(aSleepQuality: Int) =
-    when {
-      aSleepQuality <= 1 -> Color.RED
-      aSleepQuality <= 4 -> Color.rgb(255, 165, 0)
-      else -> Color.GREEN
-    }
 
   override fun getItemCount() = data.size
-}
 
-class TextItemViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
+  override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    val item = data[position]
+    holder.bind(item)
+  }
+
+
+  class ViewHolder private constructor(item: View) : RecyclerView.ViewHolder(item) {
+    private val res = item.context.resources
+    private val sleepLength: TextView = item.findViewById(R.id.sleep_length)
+    private val sleepQuality: TextView = item.findViewById(R.id.quality_string)
+    private val qualityImage: ImageView = item.findViewById(R.id.quality_image)
+
+    fun bind(
+      item: SleepNight
+    ) {
+      sleepLength.text =
+        convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
+      sleepQuality.text = convertNumericQualityToString(item.sleepQuality, res)
+      qualityImage.setImageResource(
+        when (item.sleepQuality) {
+          0 -> R.drawable.ic_sleep_0
+          1 -> R.drawable.ic_sleep_1
+          2 -> R.drawable.ic_sleep_2
+          3 -> R.drawable.ic_sleep_3
+          4 -> R.drawable.ic_sleep_4
+          5 -> R.drawable.ic_sleep_5
+          else -> R.drawable.ic_sleep_active
+        }
+      )
+    }
+
+    companion object {
+      fun from(parent: ViewGroup): ViewHolder {
+        return ViewHolder(
+          LayoutInflater.from(parent.context).inflate(
+            R.layout.list_item_sleep_night, parent, false
+          )
+        )
+      }
+    }
+  }
+}
