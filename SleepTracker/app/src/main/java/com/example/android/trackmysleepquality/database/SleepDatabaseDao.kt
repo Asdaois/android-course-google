@@ -47,4 +47,10 @@ interface SleepDatabaseDao {
   @Query("DELETE FROM $MAIN_TABLE WHERE nightId = :key")
   fun clear(key: Long)
 
+
+  @Query("SELECT * FROM $MAIN_TABLE WHERE nightId = :sleepNightKey")
+  fun getNightWithId(sleepNightKey: Long): LiveData<SleepNight>
+
+
+
 }
